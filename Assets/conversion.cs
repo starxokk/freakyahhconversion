@@ -3,122 +3,103 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ConversionOfUnits : MonoBehaviour
+public class Conversion : MonoBehaviour
 {
-    public float PHP;
-    public float Dollars;
-    public float Yen;
-    public float Rupees;
-    public float HKD;
-    public float Pounds;
-    public Textmeshpro
-    //UI Variables
-    public TMP_InputField inputfield;
+    private double philippinePeso;
+    private double unitedStatesDollarRate = 0.017110453d;
+    private double indianRupeeRate = 1.4802132d;
+    private double japaneseYenRate = 2.66356d;
+    private double britishPoundRate = 0.013845759d;
+    private double hongkongDollarRate = 0.13;
 
-    /*
-    public void ActivateDiddy()
+    public TMP_InputField inputField;
+    public TextMeshProUGUI textMeshProUGUI;
+
+    string inputValue;
+    double numericValue;
+
+    public void ToDollars()
     {
-        if (images.activeSelf)
+        inputValue = inputField.text;
+
+        if ((double.TryParse(inputValue, out numericValue)))
         {
-            images.SetActive(false);
-        }
-        else
-        {
-            images.SetActive(true);
-        }
-    }
-    */
-    //function that converts PHP to Dollars
-    public void ToUsd()
-    {
-        string inputValue = inputfield.text;
-        float numericValue;
-        if ((float.TryParse(inputValue, out numericValue)))
-        {
-            //Debug.Log
             Debug.Log(numericValue);
-            PHP = numericValue * Dollars;
-            convertedValue.text = PHP.ToString();
 
+            philippinePeso = numericValue * unitedStatesDollarRate;
+            textMeshProUGUI.text = "USD " + philippinePeso.ToString();
         }
         else
         {
-            Debug.Log("Invalid Input");
+            Debug.LogWarning("Invalid input");
         }
     }
 
-
-    //function that converts PHP to Yen
-    public void ToYen()
-    {
-        string inputValue = inputfield.text;
-        float numericValue1;
-        if ((float.TryParse(inputValue, out numericValue1)))
-        {
-            //Debug.Log PHP to Yen
-            Debug.Log(numericValue1);
-            PHP = numericValue1 * Yen;
-            convertedValue1.text = PHP.ToString();
-
-        }
-        else
-        {
-            Debug.Log("Invalid Input");
-        }
-    }
-
-
-    //function that converts PHP to Rupees
     public void ToRupees()
     {
-        string inputValue = inputfield.text;
-        float numericValue2;
-        if ((float.TryParse(inputValue, out numericValue2)))
+        inputValue = inputField.text;
+
+        if ((double.TryParse(inputValue, out numericValue)))
         {
-            //Debug.Log PHP to Rupees
-            Debug.Log(numericValue2);
-            PHP = numericValue2 * Rupees;
-            convertedValue2.text = PHP.ToString();
+            Debug.Log(numericValue);
+
+            philippinePeso = numericValue * indianRupeeRate;
+            textMeshProUGUI.text = "INR " + philippinePeso.ToString();
         }
         else
         {
-            Debug.Log("Invalid Input");
+            Debug.LogWarning("Invalid input");
         }
     }
 
-    //function that converts PHP to HKD
-    public void ToHKD()
+    public void ToYen()
     {
-        string inputValue = inputfield.text;
-        float numericValue3;
-        if ((float.TryParse(inputValue, out numericValue3)))
+        inputValue = inputField.text;
+
+        if ((double.TryParse(inputValue, out numericValue)))
         {
-            //Debug.Log PHP to HKD
-            Debug.Log(numericValue3);
-            PHP = numericValue2 * HKD;
-            convertedValue2.text = PHP.ToString();
+            Debug.Log(numericValue);
+
+            philippinePeso = numericValue * japaneseYenRate;
+            textMeshProUGUI.text = "JPY " + philippinePeso.ToString();
         }
         else
         {
-            Debug.Log("Invalid Input");
+            Debug.LogWarning("Invalid input");
         }
     }
 
-    //function that converts PHP to Pounds
     public void ToPounds()
     {
-        string inputValue = inputfield.text;
-        float numericValue4;
-        if ((float.TryParse(inputValue, out numericValue4)))
+        inputValue = inputField.text;
+
+        if ((double.TryParse(inputValue, out numericValue)))
         {
-            //Debug.Log PHP to Pounds
-            Debug.Log(numericValue4);
-            PHP = numericValue2 * Pounds;
-            convertedValue2.text = PHP.ToString();
+            Debug.Log(numericValue);
+
+            philippinePeso = numericValue * britishPoundRate;
+            textMeshProUGUI.text = "GBP " + philippinePeso.ToString();
         }
         else
         {
-            Debug.Log("Invalid Input");
+            Debug.LogWarning("Invalid input");
+        }
+    }
+
+    public void ToHKD()
+    {
+        inputValue = inputField.text;
+
+        if ((double.TryParse(inputValue, out numericValue)))
+        {
+            Debug.Log(numericValue);
+
+            philippinePeso = numericValue * hongkongDollarRate;
+            textMeshProUGUI.text = "HKD " + philippinePeso.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("Invalid input");
         }
     }
 }
